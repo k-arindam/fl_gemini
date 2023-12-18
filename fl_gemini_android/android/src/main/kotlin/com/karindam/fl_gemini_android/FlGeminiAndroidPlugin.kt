@@ -17,7 +17,7 @@ class FlGeminiAndroidPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "fl_gemini_android")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.karindam.fl_gemini_client")
     channel.setMethodCallHandler(this)
   }
 

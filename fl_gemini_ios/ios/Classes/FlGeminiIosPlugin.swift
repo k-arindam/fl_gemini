@@ -3,7 +3,7 @@ import UIKit
 
 public class FlGeminiIosPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "fl_gemini_ios", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "com.karindam.fl_gemini_client", binaryMessenger: registrar.messenger())
     let instance = FlGeminiIosPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

@@ -1,8 +1,20 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
-import 'fl_gemini_ios_platform_interface.dart';
+import 'package:fl_gemini_platform_interface/fl_gemini_platform_interface.dart';
 
-class FlGeminiIos {
-  Future<String?> getPlatformVersion() {
-    return FlGeminiIosPlatform.instance.getPlatformVersion();
+class FlGeminiIos extends FlGeminiPlatform {
+  static void registerWith() {
+    FlGeminiPlatform.instance = FlGeminiIos();
+  }
+
+  @visibleForTesting
+  final methodChannel = const MethodChannel('com.karindam.fl_gemini_client');
+
+  @override
+  Future<String?> getPlatformVersion() async {
+    final version =
+        await methodChannel.invokeMethod<String>('getPlatformVersion');
+    return version;
   }
 }

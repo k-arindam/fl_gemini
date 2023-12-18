@@ -1,7 +1,3 @@
 library fl_gemini_platform_interface;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:fl_gemini_platform_interface/src/platform_interface/fl_gemini_platform.dart';

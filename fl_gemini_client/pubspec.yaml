@@ -2,6 +2,7 @@ name: fl_gemini_client
 description: "Flutter Gemini Client"
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
@@ -11,16 +12,38 @@ dependencies:
   flutter:
     sdk: flutter
 
+  fl_gemini_android:
+    path: ../fl_gemini_android
+
+  fl_gemini_ios:
+    path: ../fl_gemini_ios
+
+  fl_gemini_web:
+    path: ../fl_gemini_web
+
+  fl_gemini_platform_interface:
+    path: ../fl_gemini_platform_interface
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
   flutter_lints: ^2.0.0
+  plugin_platform_interface: ^2.1.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+  plugin:
+    platforms:
+      android:
+        default_package: fl_gemini_android
+      ios:
+        default_package: fl_gemini_ios
+      web:
+        default_package: fl_gemini_web
 
   # To add assets to your package, add an assets section, like this:
   # assets:
