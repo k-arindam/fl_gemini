@@ -12,6 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http: ^1.1.2
+  meta: ^1.10.0
+  collection: ^1.18.0
+
   fl_gemini_android:
     path: ../fl_gemini_android
 

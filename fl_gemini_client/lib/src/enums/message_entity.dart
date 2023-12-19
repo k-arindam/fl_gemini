@@ -1,0 +1,4 @@
+enum MessageEntity {
+  user,
+  model;
+}
