@@ -21,11 +21,11 @@ class FLGeminiClient with ApiService {
   final _platformInterface = FlGeminiPlatform.instance;
 
   // METHODS
-  Future<dynamic> generateOneOffResponse(
+  Future<GeminiMessage?> generateOneOffResponse(
     String input, {
     Uint8List? image,
   }) async {
-    if (input.isEmpty) return;
+    if (input.isEmpty) return null;
     final withImage = image != null;
 
     try {
