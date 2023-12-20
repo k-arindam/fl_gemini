@@ -28,12 +28,61 @@ class FLGeminiClient with ApiService {
     if (input.isEmpty) return null;
     final withImage = image != null;
 
+    final payload = {
+      "contents": [
+        {
+          "parts": [
+            {
+              "text": input,
+            },
+          ],
+        },
+      ],
+    };
+
     try {
       final resp = await post(
         model: withImage ? GeminiModel.geminiProVision : GeminiModel.geminiPro,
         type: MessageType.oneOff,
         key: _apiKey,
-        input: input,
+        payload: payload,
+      );
+
+      return GeminiMessage.fromJson(resp["candidates"][0]["content"]);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<GeminiMessage?> generateOneOffResponseWithContext(String input,
+      {List<GeminiMessage> context = const []}) async {
+    if (input.isEmpty) return null;
+
+    final payload = {
+      "contents": [
+        ...context
+            .map((e) => {
+                  "role": e.entity.name,
+                  "parts": e.toJson()["parts"],
+                })
+            .toList(),
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": input,
+            },
+          ],
+        },
+      ],
+    };
+
+    try {
+      final resp = await post(
+        model: GeminiModel.geminiPro,
+        type: MessageType.oneOff,
+        key: _apiKey,
+        payload: payload,
       );
 
       return GeminiMessage.fromJson(resp["candidates"][0]["content"]);

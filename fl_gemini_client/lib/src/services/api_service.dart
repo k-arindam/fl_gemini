@@ -17,7 +17,7 @@ mixin ApiService {
     required GeminiModel model,
     required MessageType type,
     required String key,
-    required String input,
+    required Map payload,
   }) async {
     final uri = Uri.https(
       Constants.kBaseUrl,
@@ -26,18 +26,6 @@ mixin ApiService {
         'key': key,
       },
     );
-
-    final payload = {
-      "contents": [
-        {
-          "parts": [
-            {
-              "text": input,
-            },
-          ],
-        },
-      ],
-    };
 
     try {
       final resp = await http.post(
