@@ -54,9 +54,9 @@ class FLGeminiClient with ApiService {
     }
   }
 
-  Future<GeminiMessage?> generateOneOffResponseWithContext(String input,
-      {List<GeminiMessage> context = const []}) async {
-    if (input.isEmpty) return null;
+  Future<GeminiMessage?> generateOneOffResponseWithContext(
+      List<GeminiMessage> context) async {
+    if (context.isEmpty) return null;
 
     final payload = {
       "contents": [
@@ -66,14 +66,6 @@ class FLGeminiClient with ApiService {
                   "parts": e.toJson()["parts"],
                 })
             .toList(),
-        {
-          "role": "user",
-          "parts": [
-            {
-              "text": input,
-            },
-          ],
-        },
       ],
     };
 
