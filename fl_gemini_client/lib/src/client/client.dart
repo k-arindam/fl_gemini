@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -35,6 +36,13 @@ class FLGeminiClient with ApiService {
             {
               "text": input,
             },
+            if (withImage)
+              {
+                "inline_data": {
+                  "mime_type": "image/jpeg",
+                  "data": base64Encode(image),
+                },
+              },
           ],
         },
       ],
